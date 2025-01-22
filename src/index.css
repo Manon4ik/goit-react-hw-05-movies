@@ -1,4 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
+@import '../node_modules/normalize.css/normalize.css';
 
 body {
   margin: 0;
@@ -12,6 +12,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+img{
+  max-width: 100%;
 }
 
 

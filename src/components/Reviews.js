@@ -1,5 +1,5 @@
 //import reviews from '../reviews_993710.json'
-import React, { useState, useEffect } from "react";
+//import React, { useState, useEffect } from "react";
 import api from 'api/api'
 
 //console.log('reviews:', typeof (reviews.results));
@@ -7,11 +7,11 @@ import api from 'api/api'
 
 export default function Reviews() {
 
-    const { fetchReview } = api
+    const { fetchReviews } = api
 
-    //const  { data } = fetchReview(993710)
+    const  { data } = fetchReviews(993710)
 
-     //console.log('data:', data);
+     console.log('data:', data);
     
 
     //const { reviews } = data.data
