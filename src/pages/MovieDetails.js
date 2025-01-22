@@ -1,50 +1,50 @@
-import { useLocation, Link, Outlet } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+//import movie from '../movie_993710.json'
+import api from 'api/api';
 
-import movie from '../movie_993710.json'
-//console.log('movie:', movie);
-
-const secure_base_url = 'https://image.tmdb.org/t/p/w300'
-
-//console.log('image:', secure_base_url + movie.poster_path);
-
-
+import GoBack from "components/GoBack";
+import Movie from 'components/Movie';
+import AdditionalInfo from "components/AdditionalInfo";
 
 export default function MovieDetails() {
 
-    const location = useLocation();
-  //console.log('location Movie Single: ',location);
+    //const location = useLocation();
+    //console.log('location Movie Single: ',location);
 
-  const reliase_year = movie?.release_date?.split("-")[0];
+    const { movieId } = useParams()
+    const { fetchMovie } = api
 
-    return(
+    const [movie, setMovie] = useState(null)
+
+    useEffect(() => {
+
+        const getMovie = async () => {
+            try {
+                const { data } = await fetchMovie(movieId)
+                console.log('data:', data);
+                setMovie(data)
+
+                console.log('movie:', movie);
+
+
+            } catch (error) {
+
+            }
+        }
+
+        getMovie()
+
+    }, [movieId, movie, fetchMovie])
+
+    //console.log('movie:', typeof(movie));
+
+    return (
         <main>
-            <nav>
-                <Link to={location.state.from}>Go back</Link>
-            </nav>
-            <section className="movie">
-                <div className="movieImage">
-                    <img src={secure_base_url + movie.poster_path} alt={movie.original_title}/>
-                </div>
-                <div className="movieInfo">
-                    <h1>{movie.title} ({reliase_year})</h1>
-                    <h2>Overview</h2>
-                    <p>{movie.overview}</p>
-                    <h3>Genres</h3>
-                    <p>
-                    {movie.genres.map((genre, index)=>(
-                        <span key={index}>{genre.name} </span>
-                    ))}
-                    </p>
-                </div>
-            </section>
-            <section >
-                <h4>Additional information</h4>
-                <ul>
-                    <li><Link to="cast" state={{from: location.state.from}}>Cast</Link></li>
-                    <li><Link to="reviews" state={{from: location.state.from}}>Reviews</Link></li>
-                </ul>
-                <Outlet />
-            </section>
+            <GoBack />
+            <Movie movie={movie} />
+            <AdditionalInfo />
         </main>
     )
 }
