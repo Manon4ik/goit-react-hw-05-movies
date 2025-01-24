@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from 'api/api'
 
+import Loader from 'components/Loader';
+
 export default function Reviews() {
 
     const { fetchReviews } = api
@@ -10,10 +12,13 @@ export default function Reviews() {
 
     const [reviews, setReviews] = useState(null)
     const [error, setError] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     //console.log('reviews:', reviews);
 
     useEffect(() =>{
+
+        setIsLoading(true)
         
         const getReviews = async () => {
             try {
@@ -22,8 +27,9 @@ export default function Reviews() {
                 setReviews(data?.results)
                 
             } catch (error) {
-                setError(error);
-                //console.log(error);                
+                setError(error.message || "Something went wrong.")            
+            }finally{
+                setIsLoading(false)
             }
         }
 
@@ -41,7 +47,9 @@ export default function Reviews() {
     return (
 
         <div>
-            {reviews && reviews.length > 0 ? (
+            {isLoading ? 
+            <Loader /> :
+            Array.isArray(reviews) && reviews.length > 0 ? (
                 <ul>
                     {reviews.map(({id, author, content}) => (
                         <li key={id}>

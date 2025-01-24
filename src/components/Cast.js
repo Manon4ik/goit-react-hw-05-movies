@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import api from "api/api"
 
+import Loader from 'components/Loader';
+
 const secure_base_url = 'https://image.tmdb.org/t/p/w92'
 
 
@@ -16,14 +18,15 @@ const secure_base_url = 'https://image.tmdb.org/t/p/w92'
 export default function Cast() {
 
     const { movieId } = useParams()
-    //console.log('params:', params);
 
     const { fetchCasts } = api
 
     const [casts, setCasts] = useState(null)
     const [error, setError] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
+        setIsLoading(true)
 
         const getCasts = async () => {
             try {
@@ -31,6 +34,8 @@ export default function Cast() {
                 setCasts(data?.cast || [])
             } catch (error) {
                 setError(error.message || "Something went wrong.")
+            }finally{
+                setIsLoading(false)
             }
         }
 
@@ -42,7 +47,8 @@ export default function Cast() {
 
     return (
         <div>
-            {casts && casts.length > 0 ? (
+            {isLoading ? <Loader /> :
+            Array.isArray(casts) && casts.length > 0 ? (
                 <ul>
                     {casts.map(({ id, profile_path, name, character }) => (
                         <li key={id}>

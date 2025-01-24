@@ -1,6 +1,7 @@
-export default function Movie( {movie} ) {
+export default function Movie({ movie }) {
 
-    const {poster_path, original_title, title, overview, genres, release_date} = movie
+    //console.log(movie);
+    const {poster_path, original_title, vote_average, title, overview, genres, release_date} = movie
 
     const secure_base_url = 'https://image.tmdb.org/t/p/w300'
     const release_year = release_date?.split("-")[0];
@@ -11,14 +12,15 @@ export default function Movie( {movie} ) {
                 <img src={secure_base_url + poster_path} alt={original_title} />
             </div>
             <div className="movieInfo">
-                <h1>{title} ({release_year})</h1>
+                <h1>{title || "Unknown Title"} ({release_year || "N/A"})</h1>
+                <p>User score: {vote_average * 10}%</p>
                 <h2>Overview</h2>
-                <p>{overview}</p>
+                {overview && <p>{overview}</p>}
                 <h3>Genres</h3>
                 <p>
-                    {genres.map((genre, index) => (
+                    {Array.isArray(genres) && genres.length > 0 && (genres.map((genre, index) => (
                         <span key={index}>{genre.name} </span>
-                    ))}
+                    )))}
                 </p>
             </div>
         </section>

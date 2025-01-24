@@ -9,6 +9,14 @@ const API_KEY = '?api_key=164eadb7baae3a4c5cb507a1aca52aae';
 
 //https://api.themoviedb.org/3/movie/{movie_id}
 // https://api.themoviedb.org/3/movie/{movie_id}/reviews
+//https://api.themoviedb.org/3/trending/movie/{time_window}
+
+const fetchTranding = async () => {
+
+    const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/day${API_KEY}`)
+    //console.log('reso: ',response);
+    return response
+}
 
 const fetchMovie = async (movie_id = '') => {
 
@@ -33,7 +41,15 @@ const fetchCasts = async (movie_id = '') => {
     return response
 }
 
+const fetchMovieSearch = async (query) => {
 
-const api = { fetchMovie, fetchReviews, fetchCasts }
+    const response = await axios.get(`https://api.themoviedb.org/3/search/movie${API_KEY}&query=${query}`)
+
+    //console.log('resp:',response);
+    return response
+}
+
+
+const api = { fetchTranding, fetchMovie, fetchReviews, fetchCasts, fetchMovieSearch }
 
 export default api
