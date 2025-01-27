@@ -16,12 +16,12 @@ export default function MovieDetails() {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
-    const location = useLocation()
-    console.log('location on single: ', location);
+    //const location = useLocation()
+    //console.log('location on single: ', location);
 
     const [searchParams] = useSearchParams();
-    const request = searchParams.get('request');
-    console.log('request on Movies: ', request);
+    //const request = searchParams.get('request');
+    //console.log('request on Movies: ', request);
 
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export default function MovieDetails() {
 
         getMovie()
 
-    }, [movieId, fetchMovie])
+    }, [movieId])
 
     if (error) return <p>Error: {error}</p>;
 

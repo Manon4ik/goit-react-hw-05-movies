@@ -15,10 +15,6 @@ export default function Home() {
     //const location = useLocation()
     //console.log('location Home: ', location);
 
-    fetchTranding()
-
-
-
     useEffect(() => {
 
         const getTending = async () => {
@@ -38,7 +34,7 @@ export default function Home() {
 
         getTending()
 
-    }, [fetchTranding])
+    }, [])
 
     if (error) return <p>Error: {error}</p>;
 
