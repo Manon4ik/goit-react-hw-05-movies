@@ -19,7 +19,7 @@ export default function MovieDetails() {
     const location = useLocation()
     console.log('location on single: ', location);
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const request = searchParams.get('request');
     console.log('request on Movies: ', request);
 

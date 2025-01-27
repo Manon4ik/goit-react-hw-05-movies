@@ -10,7 +10,7 @@ export default function Movies() {
 
     const { fetchMovieSearch } = api
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
 
     
 
@@ -64,12 +64,12 @@ export default function Movies() {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div>
+        <main>
             <h1>Movies</h1>
             <SearchForm onGetRequest={addRequest} />
             {isLoading ? <Loading /> :
             <MoviesList movies={result} />
             }
-        </div>
+        </main>
     )
 }

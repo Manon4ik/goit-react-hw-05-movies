@@ -38,16 +38,16 @@ export default function Home() {
 
         getTending()
 
-    }, [])
+    }, [fetchTranding])
 
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div>
+        <main>
             <h1>Trending today</h1>
             {isLoading ? <Loading /> :
                 <MoviesList movies={result} />
             }
-        </div>
+        </main>
     )
 }
