@@ -34,7 +34,7 @@ export default function Home() {
 
         getTending()
 
-    }, [])
+    }, [fetchTranding])
 
     if (error) return <p>Error: {error}</p>;
 

@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import api from "api/api";
@@ -50,7 +50,7 @@ export default function Movies() {
 
         getMovieSearch()
         
-    }, [request] )
+    }, [request, fetchMovieSearch] )
 
     const addRequest = newRequest => {
         if (request !== newRequest) {

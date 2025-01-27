@@ -41,7 +41,7 @@ export default function Cast() {
 
         getCasts()
 
-    }, [movieId])
+    }, [movieId, fetchCasts])
 
     if (error) return <p>Error: {error}</p>;
 

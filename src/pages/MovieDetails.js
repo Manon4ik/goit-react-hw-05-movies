@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import api from 'api/api';
 
 import GoBack from "components/GoBack";
@@ -40,7 +40,7 @@ export default function MovieDetails() {
 
         getMovie()
 
-    }, [movieId])
+    }, [movieId, fetchMovie])
 
     if (error) return <p>Error: {error}</p>;
 
