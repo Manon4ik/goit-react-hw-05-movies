@@ -17,8 +17,6 @@ const Reviews = lazy(() => import("components/Reviews" /* webpackChunkName: "rev
 
 export default function App() {
 
-
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div>
