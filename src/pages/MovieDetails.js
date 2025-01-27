@@ -23,7 +23,6 @@ export default function MovieDetails() {
     //const request = searchParams.get('request');
     //console.log('request on Movies: ', request);
 
-
     useEffect(() => {
 
         setIsLoading(true)
