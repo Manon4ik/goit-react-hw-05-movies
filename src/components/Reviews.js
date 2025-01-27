@@ -38,7 +38,7 @@ export default function Reviews() {
         //console.log('reviews 2:', reviews);
         
 
-    } , [movieId, fetchReviews])
+    } , [movieId])
 
     // console.log(reviews)
 

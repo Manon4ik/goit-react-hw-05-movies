@@ -5,7 +5,7 @@ export default function SearchForm({onGetRequest}) {
         e.preventDefault()
         const form = e.currentTarget;
         const search = e.currentTarget.search.value
-        console.log('search: ', search)
+        //console.log('search: ', search)
         //setSearch(search)
         //setSearchParams({ query: search })
         

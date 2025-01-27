@@ -12,8 +12,6 @@ export default function Movies() {
 
     const [searchParams] = useSearchParams();
 
-    
-
     const [result, setResult] = useState(null)
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -22,12 +20,12 @@ export default function Movies() {
 
     //console.log('nav: ', navigation);
     
-    const location = useLocation()
-    console.log('location movies: ', location);
+    //const location = useLocation()
+    //console.log('location movies: ', location);
 
     
     const request = searchParams.get('query');
-    console.log('request on Movies: ', request);
+    //console.log('request on Movies: ', request);
     
 
 
@@ -52,7 +50,7 @@ export default function Movies() {
 
         getMovieSearch()
         
-    }, [request, fetchMovieSearch] )
+    }, [request] )
 
     const addRequest = newRequest => {
         if (request !== newRequest) {
